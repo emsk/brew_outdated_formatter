@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require "brew_outdated_formatter"
+
+BrewOutdatedFormatter::CLI.start
