@@ -8,6 +8,7 @@ module BrewOutdatedFormatter
     COLUMNS = %w[formula installed current].freeze
 
     def initialize(options)
+      @pretty = options[:pretty]
       @outdated_formulas = []
     end
 
