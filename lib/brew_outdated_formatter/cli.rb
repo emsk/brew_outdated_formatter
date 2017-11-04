@@ -6,6 +6,7 @@ require 'brew_outdated_formatter/formatter/yaml_formatter'
 require 'brew_outdated_formatter/formatter/csv_formatter'
 require 'brew_outdated_formatter/formatter/tsv_formatter'
 require 'brew_outdated_formatter/formatter/xml_formatter'
+require 'brew_outdated_formatter/formatter/html_formatter'
 
 module BrewOutdatedFormatter
   # Command-line interface of {BrewOutdatedFormatter}
@@ -16,13 +17,14 @@ module BrewOutdatedFormatter
       'yaml'     => YAMLFormatter,
       'csv'      => CSVFormatter,
       'tsv'      => TSVFormatter,
-      'xml'      => XMLFormatter
+      'xml'      => XMLFormatter,
+      'html'     => HTMLFormatter
     }.freeze
 
     default_command :output
 
     desc 'output', 'Format output of `brew outdated`'
-    option :format, type: :string, aliases: '-f', default: 'markdown', desc: 'Format. (markdown, json, yaml, csv, tsv, xml)'
+    option :format, type: :string, aliases: '-f', default: 'markdown', desc: 'Format. (markdown, json, yaml, csv, tsv, xml, html)'
     option :pretty, type: :boolean, aliases: '-p', desc: '`true` if pretty output.'
 
     def output
