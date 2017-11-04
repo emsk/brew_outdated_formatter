@@ -36,6 +36,13 @@ module BrewOutdatedFormatter
       puts formatter.convert
     end
 
+    desc 'version, -v, --version', 'Print the version'
+    map %w[-v --version] => :version
+
+    def version
+      puts "brew_outdated_formatter #{BrewOutdatedFormatter::VERSION}"
+    end
+
     private
 
     def allow_format?
