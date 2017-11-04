@@ -52,5 +52,13 @@ module BrewOutdatedFormatter
     def formula_text(text, name)
       text ? text[name] : ''
     end
+
+    def xml_formatter
+      return REXML::Formatters::Default.new unless @pretty
+
+      formatter = REXML::Formatters::Pretty.new
+      formatter.compact = true
+      formatter
+    end
   end
 end
