@@ -80,18 +80,3 @@ Style/HashSyntax:
 Style/MutableConstant:
   Exclude:
     - 'lib/brew_outdated_formatter/version.rb'
-
-# Offense count: 36
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'bin/console'
-    - 'brew_outdated_formatter.gemspec'
-    - 'exe/brew_outdated_formatter'
-    - 'lib/brew_outdated_formatter.rb'
-    - 'lib/brew_outdated_formatter/version.rb'
-    - 'spec/spec_helper.rb'
