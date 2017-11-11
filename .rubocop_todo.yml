@@ -41,13 +41,6 @@ Metrics/LineLength:
   Max: 130
 
 # Offense count: 1
-# Configuration parameters: Blacklist.
-# Blacklist: END, (?-mix:EO[A-Z]{1})
-Naming/HeredocDelimiterNaming:
-  Exclude:
-    - 'lib/brew_outdated_formatter/formatter/markdown_formatter.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 Style/Encoding:
   Exclude:

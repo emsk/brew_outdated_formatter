@@ -5,3 +5,6 @@ AllCops:
 
 Layout/IndentHeredoc:
   Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
