@@ -42,12 +42,6 @@ Metrics/LineLength:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'brew_outdated_formatter.gemspec'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/MutableConstant:
   Exclude:
     - 'lib/brew_outdated_formatter/version.rb'
