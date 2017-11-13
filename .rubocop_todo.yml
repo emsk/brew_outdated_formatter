@@ -39,9 +39,3 @@ Metrics/BlockLength:
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 130
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/brew_outdated_formatter/version.rb'
