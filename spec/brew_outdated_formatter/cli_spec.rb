@@ -22,6 +22,21 @@ Commands:
 
     subject { -> { described_class.start(thor_args) } }
 
+    context 'given `version`' do
+      let(:thor_args) { %w[version] }
+      it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
+    end
+
+    context 'given `--version`' do
+      let(:thor_args) { %w[--version] }
+      it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
+    end
+
+    context 'given `-v`' do
+      let(:thor_args) { %w[-v] }
+      it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
+    end
+
     context 'given `help`' do
       let(:thor_args) { %w[help] }
       it_behaves_like 'a `help` command'
