@@ -9,7 +9,7 @@ WIP
 ## Usage
 
 ```sh
-$ brew outdated --verbose | brew_outdated_formatter
+$ brew outdated --verbose | brof
 ```
 
 ## Command Options

@@ -18,21 +18,24 @@ Commands:
   end
 
   describe '.start' do
-    let(:command) { 'brew_outdated_formatter' }
+    let(:command) { 'brof' }
 
     subject { -> { described_class.start(thor_args) } }
 
     context 'given `version`' do
+      let(:command) { 'brew_outdated_formatter' }
       let(:thor_args) { %w[version] }
       it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
     end
 
     context 'given `--version`' do
+      let(:command) { 'brew_outdated_formatter' }
       let(:thor_args) { %w[--version] }
       it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
     end
 
     context 'given `-v`' do
+      let(:command) { 'brew_outdated_formatter' }
       let(:thor_args) { %w[-v] }
       it { is_expected.to output("#{command} #{BrewOutdatedFormatter::VERSION}\n").to_stdout }
     end
