@@ -3,9 +3,10 @@ module BrewOutdatedFormatter
   class Formatter
     FORMULA_REGEXP   = /\A(?<formula>.+) \(/
     INSTALLED_REGEXP = /\((?<installed>.+)\)/
-    CURRENT_REGEXP   = /< (?<current>.+)\z/
+    CURRENT_REGEXP   = /< ((?<current>.+) \[|(?<current>.+)\z)/
+    PINNED_REGEXP    = /\[pinned at (?<pinned>.+)\]/
 
-    COLUMNS = %w[formula installed current].freeze
+    COLUMNS = %w[formula installed current pinned].freeze
 
     def initialize(options)
       @pretty = options[:pretty]
@@ -31,7 +32,8 @@ module BrewOutdatedFormatter
       {
         'formula'   => formula_text(matched[:formula], :formula),
         'installed' => formula_text(matched[:installed], :installed),
-        'current'   => formula_text(matched[:current], :current)
+        'current'   => formula_text(matched[:current], :current),
+        'pinned'    => formula_text(matched[:pinned], :pinned)
       }
     end
 
@@ -39,7 +41,8 @@ module BrewOutdatedFormatter
       {
         formula:   FORMULA_REGEXP.match(line),
         installed: INSTALLED_REGEXP.match(line),
-        current:   CURRENT_REGEXP.match(line)
+        current:   CURRENT_REGEXP.match(line),
+        pinned:    PINNED_REGEXP.match(line)
       }
     end
 
