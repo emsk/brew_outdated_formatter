@@ -6,5 +6,10 @@ AllCops:
 Layout/IndentHeredoc:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - '*.gemspec'
+
 Naming/HeredocDelimiterNaming:
   Enabled: false
