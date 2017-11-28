@@ -11,5 +11,8 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - '*.gemspec'
 
+Metrics/LineLength:
+  Enabled: false
+
 Naming/HeredocDelimiterNaming:
   Enabled: false
