@@ -4,8 +4,8 @@ module BrewOutdatedFormatter
   # Formatter for Markdown
   class MarkdownFormatter < Formatter
     HEADER = <<-EOS.freeze
-| formula | installed | current |
-| --- | --- | --- |
+| formula | installed | current | pinned |
+| --- | --- | --- | --- |
     EOS
 
     def convert
