@@ -17,6 +17,37 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_json) do
+    <<-EOS
+[{"formula":"test1","installed":"0.0.1","current":"0.1","pinned":""},{"formula":"test2","installed":"0.0.2","current":"0.1","pinned":"0.0.2"},{"formula":"test3","installed":"10.10.1_1","current":"11.0.1_1","pinned":""}]
+    EOS
+  end
+
+  let(:stdout_json_pretty) do
+    <<-EOS
+[
+  {
+    "formula": "test1",
+    "installed": "0.0.1",
+    "current": "0.1",
+    "pinned": ""
+  },
+  {
+    "formula": "test2",
+    "installed": "0.0.2",
+    "current": "0.1",
+    "pinned": "0.0.2"
+  },
+  {
+    "formula": "test3",
+    "installed": "10.10.1_1",
+    "current": "11.0.1_1",
+    "pinned": ""
+  }
+]
+    EOS
+  end
+
   let(:help) do
     <<-EOS
 Commands:
@@ -33,6 +64,18 @@ Commands:
     end
 
     it { is_expected.to output(stdout_markdown).to_stdout }
+  end
+
+  shared_examples_for 'json format' do |options|
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    if options && options[:pretty]
+      it { is_expected.to output(stdout_json_pretty).to_stdout }
+    else
+      it { is_expected.to output(stdout_json).to_stdout }
+    end
   end
 
   shared_examples_for 'a `help` command' do
@@ -80,6 +123,30 @@ Commands:
     context 'given ``' do
       let(:thor_args) { %w[] }
       it_behaves_like 'markdown format'
+    end
+
+    context 'given `output --format json`' do
+      let(:thor_args) { %w[output --format json] }
+      it_behaves_like 'json format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f json`' do
+      let(:thor_args) { %w[output -f json] }
+      it_behaves_like 'json format'
+    end
+
+    context 'given `output --format json --pretty`' do
+      let(:thor_args) { %w[output --format json --pretty] }
+      it_behaves_like 'json format', pretty: true
+    end
+
+    context 'given `output -f json -p`' do
+      let(:thor_args) { %w[output -f json -p] }
+      it_behaves_like 'json format', pretty: true
     end
 
     context 'given `version`' do
