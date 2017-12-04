@@ -66,6 +66,15 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_csv) do
+    <<-EOS
+"formula","installed","current","pinned"
+"test1","0.0.1","0.1",""
+"test2","0.0.2","0.1","0.0.2"
+"test3","10.10.1_1","11.0.1_1",""
+    EOS
+  end
+
   let(:help) do
     <<-EOS
 Commands:
@@ -102,6 +111,14 @@ Commands:
     end
 
     it { is_expected.to output(stdout_yaml).to_stdout }
+  end
+
+  shared_examples_for 'csv format' do
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    it { is_expected.to output(stdout_csv).to_stdout }
   end
 
   shared_examples_for 'a `help` command' do
@@ -197,6 +214,30 @@ Commands:
     context 'given `output -f yaml -p`' do
       let(:thor_args) { %w[output -f yaml -p] }
       it_behaves_like 'yaml format'
+    end
+
+    context 'given `output --format csv`' do
+      let(:thor_args) { %w[output --format csv] }
+      it_behaves_like 'csv format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f csv`' do
+      let(:thor_args) { %w[output -f csv] }
+      it_behaves_like 'csv format'
+    end
+
+    context 'given `output --format csv --pretty`' do
+      let(:thor_args) { %w[output --format csv --pretty] }
+      it_behaves_like 'csv format'
+    end
+
+    context 'given `output -f csv -p`' do
+      let(:thor_args) { %w[output -f csv -p] }
+      it_behaves_like 'csv format'
     end
 
     context 'given `version`' do
