@@ -75,6 +75,15 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_tsv) do
+    <<-EOS
+"formula"	"installed"	"current"	"pinned"
+"test1"	"0.0.1"	"0.1"	""
+"test2"	"0.0.2"	"0.1"	"0.0.2"
+"test3"	"10.10.1_1"	"11.0.1_1"	""
+    EOS
+  end
+
   let(:help) do
     <<-EOS
 Commands:
@@ -119,6 +128,14 @@ Commands:
     end
 
     it { is_expected.to output(stdout_csv).to_stdout }
+  end
+
+  shared_examples_for 'tsv format' do
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    it { is_expected.to output(stdout_tsv).to_stdout }
   end
 
   shared_examples_for 'a `help` command' do
@@ -238,6 +255,30 @@ Commands:
     context 'given `output -f csv -p`' do
       let(:thor_args) { %w[output -f csv -p] }
       it_behaves_like 'csv format'
+    end
+
+    context 'given `output --format tsv`' do
+      let(:thor_args) { %w[output --format tsv] }
+      it_behaves_like 'tsv format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f tsv`' do
+      let(:thor_args) { %w[output -f tsv] }
+      it_behaves_like 'tsv format'
+    end
+
+    context 'given `output --format tsv --pretty`' do
+      let(:thor_args) { %w[output --format tsv --pretty] }
+      it_behaves_like 'tsv format'
+    end
+
+    context 'given `output -f tsv -p`' do
+      let(:thor_args) { %w[output -f tsv -p] }
+      it_behaves_like 'tsv format'
     end
 
     context 'given `version`' do
