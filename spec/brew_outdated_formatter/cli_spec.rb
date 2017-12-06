@@ -84,6 +84,38 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_xml) do
+    <<-EOS
+<?xml version='1.0' encoding='UTF-8'?><formulas><outdated><formula>test1</formula><installed>0.0.1</installed><current>0.1</current><pinned></pinned></outdated><outdated><formula>test2</formula><installed>0.0.2</installed><current>0.1</current><pinned>0.0.2</pinned></outdated><outdated><formula>test3</formula><installed>10.10.1_1</installed><current>11.0.1_1</current><pinned></pinned></outdated></formulas>
+    EOS
+  end
+
+  let(:stdout_xml_pretty) do
+    <<-EOS
+<?xml version='1.0' encoding='UTF-8'?>
+<formulas>
+  <outdated>
+    <formula>test1</formula>
+    <installed>0.0.1</installed>
+    <current>0.1</current>
+    <pinned></pinned>
+  </outdated>
+  <outdated>
+    <formula>test2</formula>
+    <installed>0.0.2</installed>
+    <current>0.1</current>
+    <pinned>0.0.2</pinned>
+  </outdated>
+  <outdated>
+    <formula>test3</formula>
+    <installed>10.10.1_1</installed>
+    <current>11.0.1_1</current>
+    <pinned></pinned>
+  </outdated>
+</formulas>
+    EOS
+  end
+
   let(:help) do
     <<-EOS
 Commands:
@@ -136,6 +168,18 @@ Commands:
     end
 
     it { is_expected.to output(stdout_tsv).to_stdout }
+  end
+
+  shared_examples_for 'xml format' do |options|
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    if options && options[:pretty]
+      it { is_expected.to output(stdout_xml_pretty).to_stdout }
+    else
+      it { is_expected.to output(stdout_xml).to_stdout }
+    end
   end
 
   shared_examples_for 'a `help` command' do
@@ -279,6 +323,30 @@ Commands:
     context 'given `output -f tsv -p`' do
       let(:thor_args) { %w[output -f tsv -p] }
       it_behaves_like 'tsv format'
+    end
+
+    context 'given `output --format xml`' do
+      let(:thor_args) { %w[output --format xml] }
+      it_behaves_like 'xml format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f xml`' do
+      let(:thor_args) { %w[output -f xml] }
+      it_behaves_like 'xml format'
+    end
+
+    context 'given `output --format xml --pretty`' do
+      let(:thor_args) { %w[output --format xml --pretty] }
+      it_behaves_like 'xml format', pretty: true
+    end
+
+    context 'given `output -f xml -p`' do
+      let(:thor_args) { %w[output -f xml -p] }
+      it_behaves_like 'xml format', pretty: true
     end
 
     context 'given `version`' do
