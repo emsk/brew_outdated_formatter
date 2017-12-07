@@ -116,6 +116,43 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_html) do
+    <<-EOS
+<table><tr><th>formula</th><th>installed</th><th>current</th><th>pinned</th></tr><tr><td>test1</td><td>0.0.1</td><td>0.1</td><td></td></tr><tr><td>test2</td><td>0.0.2</td><td>0.1</td><td>0.0.2</td></tr><tr><td>test3</td><td>10.10.1_1</td><td>11.0.1_1</td><td></td></tr></table>
+    EOS
+  end
+
+  let(:stdout_html_pretty) do
+    <<-EOS
+<table>
+  <tr>
+    <th>formula</th>
+    <th>installed</th>
+    <th>current</th>
+    <th>pinned</th>
+  </tr>
+  <tr>
+    <td>test1</td>
+    <td>0.0.1</td>
+    <td>0.1</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>test2</td>
+    <td>0.0.2</td>
+    <td>0.1</td>
+    <td>0.0.2</td>
+  </tr>
+  <tr>
+    <td>test3</td>
+    <td>10.10.1_1</td>
+    <td>11.0.1_1</td>
+    <td></td>
+  </tr>
+</table>
+    EOS
+  end
+
   let(:help) do
     <<-EOS
 Commands:
@@ -179,6 +216,18 @@ Commands:
       it { is_expected.to output(stdout_xml_pretty).to_stdout }
     else
       it { is_expected.to output(stdout_xml).to_stdout }
+    end
+  end
+
+  shared_examples_for 'html format' do |options|
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    if options && options[:pretty]
+      it { is_expected.to output(stdout_html_pretty).to_stdout }
+    else
+      it { is_expected.to output(stdout_html).to_stdout }
     end
   end
 
@@ -347,6 +396,30 @@ Commands:
     context 'given `output -f xml -p`' do
       let(:thor_args) { %w[output -f xml -p] }
       it_behaves_like 'xml format', pretty: true
+    end
+
+    context 'given `output --format html`' do
+      let(:thor_args) { %w[output --format html] }
+      it_behaves_like 'html format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f html`' do
+      let(:thor_args) { %w[output -f html] }
+      it_behaves_like 'html format'
+    end
+
+    context 'given `output --format html --pretty`' do
+      let(:thor_args) { %w[output --format html --pretty] }
+      it_behaves_like 'html format', pretty: true
+    end
+
+    context 'given `output -f html -p`' do
+      let(:thor_args) { %w[output -f html -p] }
+      it_behaves_like 'html format', pretty: true
     end
 
     context 'given `version`' do
