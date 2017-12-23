@@ -231,6 +231,14 @@ Commands:
     end
   end
 
+  shared_examples_for 'unknown format' do
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    it { is_expected.to raise_error(BrewOutdatedFormatter::UnknownFormatError, error_message) }
+  end
+
   shared_examples_for 'a `help` command' do
     before do
       expect(File).to receive(:basename).with($PROGRAM_NAME).and_return(command).at_least(:once)
@@ -420,6 +428,12 @@ Commands:
     context 'given `output -f html -p`' do
       let(:thor_args) { %w[output -f html -p] }
       it_behaves_like 'html format', pretty: true
+    end
+
+    context 'given `output` --format aaa' do
+      let(:thor_args) { %w[output --format aaa] }
+      let(:error_message) { 'aaa' }
+      it_behaves_like 'unknown format'
     end
 
     context 'given `version`' do
