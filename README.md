@@ -195,6 +195,15 @@ Pretty output:
 </table>
 ```
 
+## Supported Ruby Versions
+
+* Ruby 2.0.0
+* Ruby 2.1
+* Ruby 2.2
+* Ruby 2.3
+* Ruby 2.4
+* Ruby 2.5
+
 ## Contributing
 
 Bug reports and pull requests are welcome.
