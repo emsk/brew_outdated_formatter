@@ -18,7 +18,7 @@ $ brew outdated --verbose | brof
 
 | Option | Alias | Description | Default |
 | :----- | :---- | :---------- | :------ |
-| `--format` | `-f` | Format. `markdown`, `json`, `yaml`, `csv`, `tsv`, `xml`, or `html`. | `markdown` |
+| `--format` | `-f` | Format. `terminal`, `markdown`, `json`, `yaml`, `csv`, `tsv`, `xml`, or `html`. | `terminal` |
 | `--pretty` | `-p` | `true` if pretty output.<br>This option is available in `json`, `xml`, or `html` formats. | `false` |
 
 ## Contributing

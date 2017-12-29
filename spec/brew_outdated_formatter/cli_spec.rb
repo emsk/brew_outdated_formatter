@@ -272,6 +272,16 @@ Commands:
 
     subject { -> { described_class.start(thor_args) } }
 
+    context 'given `output`' do
+      let(:thor_args) { %w[output] }
+      it_behaves_like 'terminal format'
+    end
+
+    context 'given ``' do
+      let(:thor_args) { %w[] }
+      it_behaves_like 'terminal format'
+    end
+
     context 'given `output --format terminal`' do
       let(:thor_args) { %w[output --format terminal] }
       it_behaves_like 'terminal format'
@@ -317,16 +327,6 @@ Commands:
 
     context 'given `output -f markdown -p`' do
       let(:thor_args) { %w[output -f markdown -p] }
-      it_behaves_like 'markdown format'
-    end
-
-    context 'given `output`' do
-      let(:thor_args) { %w[output] }
-      it_behaves_like 'markdown format'
-    end
-
-    context 'given ``' do
-      let(:thor_args) { %w[] }
       it_behaves_like 'markdown format'
     end
 
@@ -537,7 +537,7 @@ Usage:
 
 Options:
   -f, [--format=FORMAT]          # Format. (terminal, markdown, json, yaml, csv, tsv, xml, html)
-                                 # Default: markdown
+                                 # Default: terminal
   -p, [--pretty], [--no-pretty]  # `true` if pretty output.
 
 Format output of `brew outdated`
