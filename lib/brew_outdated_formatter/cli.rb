@@ -1,5 +1,6 @@
 require 'thor'
 require 'brew_outdated_formatter/error'
+require 'brew_outdated_formatter/formatter/terminal_formatter'
 require 'brew_outdated_formatter/formatter/markdown_formatter'
 require 'brew_outdated_formatter/formatter/json_formatter'
 require 'brew_outdated_formatter/formatter/yaml_formatter'
@@ -12,6 +13,7 @@ module BrewOutdatedFormatter
   # Command-line interface of {BrewOutdatedFormatter}
   class CLI < Thor
     FORMATTERS = {
+      'terminal' => TerminalFormatter,
       'markdown' => MarkdownFormatter,
       'json'     => JSONFormatter,
       'yaml'     => YAMLFormatter,
@@ -24,7 +26,7 @@ module BrewOutdatedFormatter
     default_command :output
 
     desc 'output', 'Format output of `brew outdated`'
-    option :format, type: :string, aliases: '-f', default: 'markdown', desc: 'Format. (markdown, json, yaml, csv, tsv, xml, html)'
+    option :format, type: :string, aliases: '-f', default: 'markdown', desc: 'Format. (terminal, markdown, json, yaml, csv, tsv, xml, html)'
     option :pretty, type: :boolean, aliases: '-p', desc: '`true` if pretty output.'
 
     def output

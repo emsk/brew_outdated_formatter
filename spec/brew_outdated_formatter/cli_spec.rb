@@ -7,6 +7,18 @@ test3 (10.10.1_1) < 11.0.1_1
     EOS
   end
 
+  let(:stdout_terminal) do
+    <<-EOS
++---------+-----------+----------+--------+
+| formula | installed | current  | pinned |
++---------+-----------+----------+--------+
+| test1   | 0.0.1     | 0.1      |        |
+| test2   | 0.0.2     | 0.1      | 0.0.2  |
+| test3   | 10.10.1_1 | 11.0.1_1 |        |
++---------+-----------+----------+--------+
+    EOS
+  end
+
   let(:stdout_markdown) do
     <<-EOS
 | formula | installed | current | pinned |
@@ -163,6 +175,14 @@ Commands:
     EOS
   end
 
+  shared_examples_for 'terminal format' do
+    before do
+      stub_const('STDIN', StringIO.new(stdin))
+    end
+
+    it { is_expected.to output(stdout_terminal).to_stdout }
+  end
+
   shared_examples_for 'markdown format' do
     before do
       stub_const('STDIN', StringIO.new(stdin))
@@ -251,6 +271,30 @@ Commands:
     let(:command) { 'brof' }
 
     subject { -> { described_class.start(thor_args) } }
+
+    context 'given `output --format terminal`' do
+      let(:thor_args) { %w[output --format terminal] }
+      it_behaves_like 'terminal format'
+
+      context 'without STDIN' do
+        it { is_expected.not_to output.to_stdout }
+      end
+    end
+
+    context 'given `output -f terminal`' do
+      let(:thor_args) { %w[output -f terminal] }
+      it_behaves_like 'terminal format'
+    end
+
+    context 'given `output --format terminal --pretty`' do
+      let(:thor_args) { %w[output --format terminal --pretty] }
+      it_behaves_like 'terminal format'
+    end
+
+    context 'given `output -f terminal -p`' do
+      let(:thor_args) { %w[output -f terminal -p] }
+      it_behaves_like 'terminal format'
+    end
 
     context 'given `output --format markdown`' do
       let(:thor_args) { %w[output --format markdown] }
@@ -492,7 +536,7 @@ Usage:
   #{command} output
 
 Options:
-  -f, [--format=FORMAT]          # Format. (markdown, json, yaml, csv, tsv, xml, html)
+  -f, [--format=FORMAT]          # Format. (terminal, markdown, json, yaml, csv, tsv, xml, html)
                                  # Default: markdown
   -p, [--pretty], [--no-pretty]  # `true` if pretty output.
 
