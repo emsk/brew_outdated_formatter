@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/emsk/brew_outdated_formatter.svg?branch=master)](https://travis-ci.org/emsk/brew_outdated_formatter)
 
-BrewOutdatedFormatter is a command-line tool to format output of `brew outdated`.
+BrewOutdatedFormatter is a command-line tool to format output of `brew outdated --verbose`.
 
 ## Installation
 

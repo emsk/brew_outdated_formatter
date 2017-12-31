@@ -25,7 +25,7 @@ module BrewOutdatedFormatter
 
     default_command :output
 
-    desc 'output', 'Format output of `brew outdated`'
+    desc 'output', 'Format output of `brew outdated --verbose`'
     option :format, type: :string, aliases: '-f', default: 'terminal', desc: 'Format. (terminal, markdown, json, yaml, csv, tsv, xml, html)'
     option :pretty, type: :boolean, aliases: '-p', desc: '`true` if pretty output.'
 

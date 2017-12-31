@@ -169,7 +169,7 @@ test3 (10.10.1_1) < 11.0.1_1
     <<-EOS
 Commands:
   #{command} help [COMMAND]          # Describe available commands or one specific command
-  #{command} output                  # Format output of `brew outdated`
+  #{command} output                  # Format output of `brew outdated --verbose`
   #{command} version, -v, --version  # Print the version
 
     EOS
@@ -540,7 +540,7 @@ Options:
                                  # Default: terminal
   -p, [--pretty], [--no-pretty]  # `true` if pretty output.
 
-Format output of `brew outdated`
+Format output of `brew outdated --verbose`
         EOS
       end
       it_behaves_like 'a `help` command'

@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['emsk']
   spec.email         = ['emsk1987@gmail.com']
 
-  spec.summary       = 'Formatter for `brew outdated`'
-  spec.description   = 'BrewOutdatedFormatter is a command-line tool to format output of `brew outdated`'
+  spec.summary       = 'Formatter for `brew outdated --verbose`'
+  spec.description   = 'BrewOutdatedFormatter is a command-line tool to format output of `brew outdated --verbose`'
   spec.homepage      = 'https://github.com/emsk/brew_outdated_formatter'
   spec.license       = 'MIT'
 
