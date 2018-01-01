@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/emsk/brew_outdated_formatter.svg?branch=master)](https://travis-ci.org/emsk/brew_outdated_formatter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8453393423f70479acd8/maintainability)](https://codeclimate.com/github/emsk/brew_outdated_formatter/maintainability)
+[![Dependency Status](https://gemnasium.com/badges/github.com/emsk/brew_outdated_formatter.svg)](https://gemnasium.com/github.com/emsk/brew_outdated_formatter)
 
 BrewOutdatedFormatter is a command-line tool to format output of `brew outdated --verbose`.
 
