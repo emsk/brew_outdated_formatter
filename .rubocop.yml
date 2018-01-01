@@ -20,3 +20,7 @@ Metrics/LineLength:
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'Gemfile'
