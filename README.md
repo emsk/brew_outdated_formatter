@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/emsk/brew_outdated_formatter.svg?branch=master)](https://travis-ci.org/emsk/brew_outdated_formatter)
 [![Build status](https://ci.appveyor.com/api/projects/status/067w2aox7u1rt0jl?svg=true)](https://ci.appveyor.com/project/emsk/brew-outdated-formatter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8453393423f70479acd8/maintainability)](https://codeclimate.com/github/emsk/brew_outdated_formatter/maintainability)
-[![Dependency Status](https://gemnasium.com/badges/github.com/emsk/brew_outdated_formatter.svg)](https://gemnasium.com/github.com/emsk/brew_outdated_formatter)
 [![Inline docs](http://inch-ci.org/github/emsk/brew_outdated_formatter.svg?branch=master)](http://inch-ci.org/github/emsk/brew_outdated_formatter)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
