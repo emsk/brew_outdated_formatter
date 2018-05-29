@@ -15,12 +15,6 @@ Gemspec/RequiredRubyVersion:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Performance/InefficientHashSearch:
-  Exclude:
-    - 'lib/brew_outdated_formatter/cli.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/ExpandPathArguments:
   Exclude:
     - 'brew_outdated_formatter.gemspec'
