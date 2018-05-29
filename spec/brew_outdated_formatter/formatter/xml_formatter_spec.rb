@@ -28,13 +28,13 @@ RSpec.describe BrewOutdatedFormatter::XMLFormatter do
 
   let(:text_xml) do
     <<-EOS.chomp
-<?xml version='1.0' encoding='UTF-8'?><formulas><outdated><formula>test1</formula><installed>0.0.1</installed><current>0.1</current><pinned></pinned></outdated><outdated><formula>test2</formula><installed>0.0.2</installed><current>0.1</current><pinned>0.0.2</pinned></outdated><outdated><formula>test3</formula><installed>10.10.1_1</installed><current>11.0.1_1</current><pinned></pinned></outdated></formulas>
+<?xml version="1.0" encoding="UTF-8"?><formulas><outdated><formula>test1</formula><installed>0.0.1</installed><current>0.1</current><pinned></pinned></outdated><outdated><formula>test2</formula><installed>0.0.2</installed><current>0.1</current><pinned>0.0.2</pinned></outdated><outdated><formula>test3</formula><installed>10.10.1_1</installed><current>11.0.1_1</current><pinned></pinned></outdated></formulas>
     EOS
   end
 
   let(:text_xml_pretty) do
     <<-EOS.chomp
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <formulas>
   <outdated>
     <formula>test1</formula>

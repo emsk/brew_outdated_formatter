@@ -8,7 +8,6 @@ module BrewOutdatedFormatter
       super(options)
 
       @xml = REXML::Document.new(nil, raw: :all)
-      @xml << REXML::XMLDecl.new('1.0', 'UTF-8')
       @root = REXML::Element.new('formulas')
       @xml.add_element(@root)
     end
@@ -19,6 +18,8 @@ module BrewOutdatedFormatter
       end
 
       io = StringIO.new
+      io.write('<?xml version="1.0" encoding="UTF-8"?>')
+      io.write("\n") if @pretty
       xml_formatter.write(@xml, io)
       io.string.chomp
     end
