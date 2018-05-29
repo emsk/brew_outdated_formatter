@@ -1,18 +1,16 @@
-require 'terminal-table'
+require 'tty-table'
 require 'brew_outdated_formatter/formatter'
 
 module BrewOutdatedFormatter
   # Formatter for Terminal
   class TerminalFormatter < Formatter
     def convert
-      table = Terminal::Table.new do |t|
-        t << COLUMNS
-        t << :separator
+      table = TTY::Table.new(header: COLUMNS) do |t|
         @outdated_formulas.each do |formula|
           t << formula.values
         end
       end
-      table.render.chomp
+      table.render(@style.to_sym, padding: [0, 1]).chomp
     end
   end
 end

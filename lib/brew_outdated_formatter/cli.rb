@@ -22,15 +22,18 @@ module BrewOutdatedFormatter
       'xml'      => XMLFormatter,
       'html'     => HTMLFormatter
     }.freeze
+    STYLES = %w[unicode ascii].freeze
 
     default_command :output
 
     desc 'output', 'Format output of `brew outdated --verbose`'
     option :format, type: :string, aliases: '-f', default: 'terminal', desc: 'Format. (terminal, markdown, json, yaml, csv, tsv, xml, html)'
     option :pretty, type: :boolean, aliases: '-p', desc: '`true` if pretty output.'
+    option :style, type: :string, aliases: '-s', default: 'unicode', desc: 'Terminal table style. (unicode, ascii)'
 
     def output
       raise BrewOutdatedFormatter::UnknownFormatError, options[:format] unless allow_format?
+      raise BrewOutdatedFormatter::UnknownStyleError, options[:style] unless allow_style?
       return if STDIN.tty?
 
       formatter = create_formatter
@@ -49,6 +52,10 @@ module BrewOutdatedFormatter
 
     def allow_format?
       FORMATTERS.key?(options[:format])
+    end
+
+    def allow_style?
+      STYLES.include?(options[:style])
     end
 
     def create_formatter
