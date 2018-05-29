@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/brew_outdated_formatter.svg)](https://badge.fury.io/rb/brew_outdated_formatter)
 [![Build Status](https://travis-ci.org/emsk/brew_outdated_formatter.svg?branch=master)](https://travis-ci.org/emsk/brew_outdated_formatter)
 [![Build status](https://ci.appveyor.com/api/projects/status/067w2aox7u1rt0jl?svg=true)](https://ci.appveyor.com/project/emsk/brew-outdated-formatter)
+[![Codecov](https://codecov.io/gh/emsk/brew_outdated_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/emsk/brew_outdated_formatter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8453393423f70479acd8/maintainability)](https://codeclimate.com/github/emsk/brew_outdated_formatter/maintainability)
 [![Inline docs](http://inch-ci.org/github/emsk/brew_outdated_formatter.svg?branch=master)](http://inch-ci.org/github/emsk/brew_outdated_formatter)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
