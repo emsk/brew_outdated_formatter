@@ -9,6 +9,7 @@ module BrewOutdatedFormatter
 
       @xml = REXML::Document.new(nil, raw: :all)
       @root = REXML::Element.new('formulas')
+      @root.add_text('')
       @xml.add_element(@root)
     end
 
