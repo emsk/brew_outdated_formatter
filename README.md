@@ -1,6 +1,7 @@
 # BrewOutdatedFormatter
 
 [![Gem Version](https://badge.fury.io/rb/brew_outdated_formatter.svg)](https://badge.fury.io/rb/brew_outdated_formatter)
+[![Build Status](https://github.com/emsk/brew_outdated_formatter/actions/workflows/build.yml/badge.svg)](https://github.com/emsk/brew_outdated_formatter/actions/workflows/build.yml)
 [![Build Status](https://travis-ci.org/emsk/brew_outdated_formatter.svg?branch=main)](https://travis-ci.org/emsk/brew_outdated_formatter)
 [![Build status](https://ci.appveyor.com/api/projects/status/067w2aox7u1rt0jl?svg=true)](https://ci.appveyor.com/project/emsk/brew-outdated-formatter)
 [![Codecov](https://codecov.io/gh/emsk/brew_outdated_formatter/branch/main/graph/badge.svg)](https://codecov.io/gh/emsk/brew_outdated_formatter)
